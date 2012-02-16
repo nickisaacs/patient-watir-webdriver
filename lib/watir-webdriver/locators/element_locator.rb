@@ -315,6 +315,8 @@ module Watir
       when :href
         # TODO: change this behaviour?
         'normalize-space(@href)'
+      when :type
+        XpathSupport.downcase "@type"
       else
         "@#{key.to_s.gsub("_", "-")}"
       end
