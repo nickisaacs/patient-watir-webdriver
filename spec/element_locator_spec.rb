@@ -88,7 +88,7 @@ describe Watir::ElementLocator do
       end
 
       it "uses the corresponding <label>'s @for attribute when locating by label" do
-        expect_one :xpath, ".//input[@type='text' and @id=//label[normalize-space()='foo']/@for]"
+        expect_one :xpath, ".//input[translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')='text' and @id=//label[normalize-space()='foo']/@for]"
 
         selector = [
           :tag_name, "input",
