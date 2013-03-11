@@ -1,5 +1,27 @@
 # encoding: utf-8
 
+module PatientActions
+   
+  def patient_click(*modifiers)
+     
+    try = 0
+    begin
+      click(*modifiers)
+    rescue
+      try += 1
+      if try > 3
+        puts "Could not click after 3 trys"
+        kernel.caller
+        return
+      else
+        retry
+      end
+    end
+     
+  end
+
+end
+
 module Watir
 
   #
@@ -12,6 +34,7 @@ module Watir
     include Exception
     include Container
     include EventuallyPresent
+    include PatientActions
 
     #
     # temporarily add :id and :class_name manually since they're no longer specified in the HTML spec.
@@ -555,4 +578,5 @@ module Watir
     end
 
   end # Element
+  
 end # Watir
